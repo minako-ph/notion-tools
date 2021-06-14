@@ -70,18 +70,12 @@ export const initializeItems = (calendarId: string) => {
       const title = item['summary'] || '取得失敗'
 
       // TODO データの整形処理をonCalendarEditと共通化する
-      const startDt =
-        item['start'] && typeof item['start'].dateTime !== 'undefined'
-          ? item['start'].dateTime
-          : formatRFC3339(startOfDay(new Date(item['start'].date)))
-      const endDt =
-        item['end'] && typeof item['end'].dateTime !== 'undefined'
-          ? item['end'].dateTime
-          : formatRFC3339(sub(endOfDay(new Date(item['end'].date)), {days: 1}))
-      const isAllDay =
-        item['start'] && typeof item['start'].date !== 'undefined'
-          ? true
-          : false // NOTE: dateが返される時は終日予定
+      // @ts-ignore GoogleカレンダーAPIの仕様的にdateTimeかdateどちらかしかundefにならない
+      const startDt = typeof item['start'].dateTime !== 'undefined' ? item['start'].dateTime : formatRFC3339(startOfDay(new Date(item['start'].date as string)))
+      // @ts-ignore GoogleカレンダーAPIの仕様的にdateTimeかdateどちらかしかundefにならない
+      const endDt = typeof item['end'].dateTime !== 'undefined' ? item['end'].dateTime : formatRFC3339(sub(endOfDay(new Date(item['end'].date as string)), {days: 1}))
+      // @ts-ignore GoogleカレンダーAPIの仕様的にdateTimeかdateどちらかしかundefにならない
+      const isAllDay = typeof item['start'].date !== 'undefined' ? true : false // NOTE: dateが返される時は終日予定
 
       const link = item['htmlLink'] || ''
 

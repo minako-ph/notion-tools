@@ -2,6 +2,14 @@
   "timeZone": "Asia/Tokyo",
   "dependencies": {
   },
+  "webapp": {
+    "access": "ANYONE_ANONYMOUS",
+    "executeAs": "USER_DEPLOYING"
+  },
   "exceptionLogging": "STACKDRIVER",
+  "oauthScopes": ["https://www.googleapis.com/auth/script.external_request"],
+  "executionApi": {
+    "access": "ANYONE"
+  },
   "runtimeVersion": "V8"
 }
