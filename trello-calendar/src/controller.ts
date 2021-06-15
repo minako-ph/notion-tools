@@ -84,13 +84,15 @@ export const createItem = (title: string, dateJP: string, date: string, link: st
   }
 
   const reqUrl = `https://api.notion.com/v1/pages`
-  console.log('reqUrl')
-  console.log(reqUrl)
 
-  // @ts-ignore
-  const result = UrlFetchApp.fetch(reqUrl, options)
-  console.log('🐛debug: result')
-  console.log(result.getContentText())
+  try {
+    // @ts-ignore
+    const result = UrlFetchApp.fetch(reqUrl, options)
+    console.log('🐛debug: result')
+    console.log(result.getContentText())
+  } catch (e) {
+    throw `${reqUrl}へのリクエストに失敗しました`
+  }
 }
 
 /**
@@ -155,13 +157,15 @@ export const updateItem = (title: string, dateJP: string, date: string, listId: 
   }
 
   const reqUrl = `https://api.notion.com/v1/pages/${itemId}`
-  console.log('reqUrl')
-  console.log(reqUrl)
 
-  // @ts-ignore
-  const result = UrlFetchApp.fetch(reqUrl, options)
-  console.log('🐛debug: result')
-  console.log(result.getContentText())
+  try {
+    // @ts-ignore
+    const result = UrlFetchApp.fetch(reqUrl, options)
+    console.log('🐛debug: result')
+    console.log(result.getContentText())
+  } catch (e) {
+    throw `${reqUrl}へのリクエストに失敗しました`
+  }
 }
 
 /**
@@ -203,15 +207,16 @@ export const getItemId = (listId: string, cardId: string): string|null => {
   }
 
   const reqUrl = `https://api.notion.com/v1/databases/${DATABASE_ID}/query`
-  console.log('reqUrl')
-  console.log(reqUrl)
 
-  // @ts-ignore
-  const result = UrlFetchApp.fetch(reqUrl, options)
-  const results = JSON.parse(result.getContentText())['results']
-
-  // NOTE: 1つしかヒットしないとして0個目の情報を返す
-  return results.length > 0 ? results[0]['id'] : null
+  try {
+    // @ts-ignore
+    const result = UrlFetchApp.fetch(reqUrl, options)
+    const results = JSON.parse(result.getContentText())['results']
+    // NOTE: 1つしかヒットしないとして0個目の情報を返す
+    return results.length > 0 ? results[0]['id'] : null
+  } catch (e) {
+    throw `${reqUrl}へのリクエストに失敗しました`
+  }
 }
 
 /**
@@ -253,12 +258,13 @@ const _toggleItemDeleted = (deleted: boolean, itemId: string) => {
   }
 
   const reqUrl = `https://api.notion.com/v1/pages/${itemId}`
-  console.log('reqUrl')
-  console.log(reqUrl)
 
-  // @ts-ignore
-  const result = UrlFetchApp.fetch(reqUrl, options)
-  console.log('🐛debug: result')
-  console.log(result.getContentText())
+  try {
+    // @ts-ignore
+    const result = UrlFetchApp.fetch(reqUrl, options)
+    console.log('🐛debug: result')
+    console.log(result.getContentText())
+  } catch (e) {
+    throw `${reqUrl}へのリクエストに失敗しました`
+  }
 }
-

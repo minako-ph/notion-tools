@@ -79,10 +79,14 @@ export const createItem = (title: string, startDt: string, endDt: string, isAllD
 
   const reqUrl = `https://api.notion.com/v1/pages`
 
-  // @ts-ignore
-  const result = UrlFetchApp.fetch(reqUrl, options)
-  console.log('🐛debug: result')
-  console.log(result.getContentText())
+  try {
+    // @ts-ignore
+    const result = UrlFetchApp.fetch(reqUrl, options)
+    console.log('🐛debug: result')
+    console.log(result.getContentText())
+  } catch (e) {
+    throw `${reqUrl}へのリクエストに失敗しました`
+  }
 }
 
 /**
@@ -136,10 +140,14 @@ export const updateItem = (title: string, startDt: string, endDt: string, isAllD
 
   const reqUrl = `https://api.notion.com/v1/pages/${itemId}`
 
-  // @ts-ignore
-  const result = UrlFetchApp.fetch(reqUrl, options)
-  console.log('🐛debug: result')
-  console.log(result.getContentText())
+  try {
+    // @ts-ignore
+    const result = UrlFetchApp.fetch(reqUrl, options)
+    console.log('🐛debug: result')
+    console.log(result.getContentText())
+  } catch (e) {
+    throw `${reqUrl}へのリクエストに失敗しました`
+  }
 }
 
 /**
@@ -170,10 +178,14 @@ export const deleteItem = (itemId: string) => {
 
   const reqUrl = `https://api.notion.com/v1/pages/${itemId}`
 
-  // @ts-ignore
-  const result = UrlFetchApp.fetch(reqUrl, options)
-  console.log('🐛debug: result')
-  console.log(result.getContentText())
+  try {
+    // @ts-ignore
+    const result = UrlFetchApp.fetch(reqUrl, options)
+    console.log('🐛debug: result')
+    console.log(result.getContentText())
+  } catch (e) {
+    throw `${reqUrl}へのリクエストに失敗しました`
+  }
 }
 
 /**
@@ -216,10 +228,14 @@ export const getItemId = (eventId: string, account: string): string|null => {
 
   const reqUrl = `https://api.notion.com/v1/databases/${DATABASE_ID}/query`
 
-  // @ts-ignore
-  const result = UrlFetchApp.fetch(reqUrl, options)
-  const results = JSON.parse(result.getContentText())['results']
+  try {
+    // @ts-ignore
+    const result = UrlFetchApp.fetch(reqUrl, options)
+    const results = JSON.parse(result.getContentText())['results']
 
-  // NOTE: 1つしかヒットしないとして0個目の情報を返す
-  return results.length > 0 ? results[0]['id'] : null
+    // NOTE: 1つしかヒットしないとして0個目の情報を返す
+    return results.length > 0 ? results[0]['id'] : null
+  } catch (e) {
+    throw `${reqUrl}へのリクエストに失敗しました`
+  }
 }
