@@ -26,8 +26,15 @@ export const doPost = (e: DoPost) => {
 
   console.log('🐛：translationKey')
   console.log(translationKey)
+  console.log('🐛：data')
+  console.log(action.data)
 
   switch (translationKey) {
+    case 'action_copy_card': {
+      const data = formatData(action.data, false)
+      createItem(data.title, data.dateJP, data.dt, data.link, data.listId, data.cardId)
+      return
+    }
     case 'action_create_card': {
       const data = formatData(action.data, false)
       createItem(data.title, data.dateJP, data.dt, data.link, data.listId, data.cardId)

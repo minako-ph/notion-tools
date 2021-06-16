@@ -19,9 +19,6 @@ export const convertToDateFromDateJp = (dateJp: string): Date => {
  * @param isListUpdate リスト移動した時はデータ形式が変わるので指定する
  */
 export const formatData = (data: any, isListUpdate: boolean) => {
-  console.log('🐛 before format data')
-  console.log(data)
-
   const title = data.card.name
   const link = `https://trello.com/c/${data.card.shortLink}`
   const cardId = data.card.id
