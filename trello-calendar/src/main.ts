@@ -24,6 +24,9 @@ export const doPost = (e: DoPost) => {
   const action = contents.action
   const translationKey = contents.action.display.translationKey
 
+  console.log('🐛：translationKey')
+  console.log(translationKey)
+
   switch (translationKey) {
     case 'action_create_card': {
       const data = formatData(action.data, false)
