@@ -11,8 +11,7 @@ export const DATABASE_ID = prop.DATABASE_ID
 export const NOTION_TOKEN = prop.NOTION_TOKEN
 export const CALLBACK_URL = prop.CALLBACK_URL
 
-export const main = () => {
-}
+export const main = () => {}
 
 type DoPost = GoogleAppsScript.Events.DoPost
 /**

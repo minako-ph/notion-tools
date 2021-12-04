@@ -28,6 +28,7 @@ export const initializeItems = () => {
 /**
  * createWebhook Trelloのwebhookを作成す
  * NOTE: １度しか叩かない
+ * !! createWebhookを叩くときはウェブアプリケーションのスコープを一旦 only me にする必要がある !!
  */
 export const createWebhook = () => {
   const requestUrl = 'https://api.trello.com/1/tokens/' + TRELLO_TOKEN + '/webhooks/?key=' + TRELLO_KEY

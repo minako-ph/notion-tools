@@ -12,6 +12,17 @@ Notionのデータベースに同期される
 - ClaspでApp Scriptへデプロイ
 - 発火はGASのトリガーを用いる, 初期実行系は手動で
 
+**環境構築**  
+https://github.com/minako-ph/clasp-ts-template
+
 ## Usage
 
 // todo...
+
+### memo
+- build
+    - `yarn build`
+- GASへ反映
+    - `yarn deploy`
+- main関数をローカルから実行
+    - `yarn run:main`

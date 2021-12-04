@@ -13,5 +13,19 @@ Trelloにカレンダー形式でリストを作成している自分のボー�
 ## 環境
 // todo...
 
+**環境構築**  
+https://github.com/minako-ph/clasp-ts-template
+
 ## Usage
 // todo...
+
+### memo
+- build
+  - `yarn build`
+- GASへ反映
+  - `yarn deploy`
+- main関数をローカルから実行
+  - `yarn run:main`
+- GASへ反映 & ウェブアプリケーションに新しいバージョンを公開
+  - `yarn deploy && yarn clasp deploy --deploymentId ${deploymentId}`  
+  - `${deploymentId}`：`https://script.google.com/macros/s/**ここ**/exec`
