@@ -27,8 +27,9 @@ export const initializeItems = () => {
 
 /**
  * createWebhook Trelloのwebhookを作成す
- * NOTE: １度しか叩かない
+ * NOTE: ボードを変更した時に初期設定として1度だけ叩く
  * !! createWebhookを叩くときはウェブアプリケーションのスコープを一旦 only me にする必要がある !!
+ * Deploy as web app > Who has access to the app => Only myself
  */
 export const createWebhook = () => {
   const requestUrl = 'https://api.trello.com/1/tokens/' + TRELLO_TOKEN + '/webhooks/?key=' + TRELLO_KEY

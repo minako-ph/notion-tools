@@ -1,5 +1,6 @@
 import { createItem, deleteItem, getItemId, restoreItem, updateItem } from './controller'
 import { formatData } from './util'
+import { createWebhook } from './initializer'
 
 const prop = PropertiesService.getScriptProperties().getProperties()
 
@@ -11,7 +12,9 @@ export const DATABASE_ID = prop.DATABASE_ID
 export const NOTION_TOKEN = prop.NOTION_TOKEN
 export const CALLBACK_URL = prop.CALLBACK_URL
 
-export const main = () => {}
+export const main = () => {
+  // createWebhook()
+}
 
 type DoPost = GoogleAppsScript.Events.DoPost
 /**
