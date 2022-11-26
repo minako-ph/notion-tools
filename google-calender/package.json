@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack",
-    "deploy": "yarn build && clasp push",
-    "run:main": "yarn deploy && clasp run main && clasp logs",
+    "push": "yarn build && clasp push",
+    "run:main": "yarn push && clasp run main && clasp logs",
     "logs": "clasp logs",
     "open": "clasp open"
   },
