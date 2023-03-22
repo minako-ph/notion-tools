@@ -1,16 +1,24 @@
 import { getAccountTag } from './util'
 import { createItem, deleteItem, getItemId, updateItem } from './controller'
 import { endOfDay, formatRFC3339, startOfDay, sub } from 'date-fns'
+import {
+  initializeItems,
+  initialSync
+} from './initializer'
 
 const props = PropertiesService.getScriptProperties().getProperties()
 export const TOKEN = props.TOKEN
 export const DATABASE_ID = props.DATABASE_ID
 export const CALENDAR_ID_A = props.CALENDAR_ID_A
 export const CALENDAR_ID_B = props.CALENDAR_ID_B
+export const CALENDAR_ID_C = props.CALENDAR_ID_C
 export const CALENDAR_NAME_A = props.CALENDAR_NAME_A
 export const CALENDAR_NAME_B = props.CALENDAR_NAME_B
+export const CALENDAR_NAME_C = props.CALENDAR_NAME_C
 
 export const main = () => {
+  // initialSync(CALENDAR_ID_C)
+  // initializeItems(CALENDAR_ID_C)
 }
 
 type CalendarEvent = {
@@ -29,7 +37,7 @@ export const onCalendarEdit = (e: CalendarEvent) => {
 
   // 保存していた差分同期トークンの取得
   const properties = PropertiesService.getScriptProperties()
-  const nextSyncToken = properties.getProperty("syncToken")
+  const nextSyncToken = properties.getProperty(`syncToken-${getAccountTag(calendarId)}`)
 
   const events = Calendar.Events
   if (!events) throw 'イベントの取得に失敗しました'
@@ -40,7 +48,7 @@ export const onCalendarEdit = (e: CalendarEvent) => {
   // 次回使用する差分同期トークンを保存
   const newNextSyncToken = items.nextSyncToken
   if (!newNextSyncToken) throw '同期トークンの取得に失敗しました'
-  properties.setProperty("syncToken", newNextSyncToken)
+  properties.setProperty(`syncToken-${getAccountTag(calendarId)}`, newNextSyncToken)
 
   // アカウントの取得
   const account = getAccountTag(calendarId) || '取得失敗'

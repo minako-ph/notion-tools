@@ -1,8 +1,10 @@
 import {
   CALENDAR_ID_A,
   CALENDAR_ID_B,
+  CALENDAR_ID_C,
   CALENDAR_NAME_A,
   CALENDAR_NAME_B,
+  CALENDAR_NAME_C,
 } from './main'
 
 /**
@@ -15,6 +17,8 @@ export const getAccountTag = (calenderId: string): string|null => {
       return CALENDAR_NAME_A || null
     case CALENDAR_ID_B:
       return CALENDAR_NAME_B || null
+    case CALENDAR_ID_C:
+      return CALENDAR_NAME_C || null
     default:
       return null
   }

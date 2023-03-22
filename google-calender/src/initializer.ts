@@ -24,7 +24,7 @@ export const initialSync = (calendarId: string) => {
   if (!events) throw "イベントの取得に失敗しました";
 
   // 初期同期 // NOTE: timeMinは最後のページに存在するnextSyncTokenを取るための暫定対応
-  const timeMin = startOfDay(new Date(2021, 6, 1)).toISOString();
+  const timeMin = startOfDay(new Date(2023, 3, 1)).toISOString();
   const items = events.list(calendarId, { timeMin: timeMin });
 
   // 次回使用する差分同期トークンを保存
@@ -32,7 +32,7 @@ export const initialSync = (calendarId: string) => {
   if (!nextSyncToken) throw "同期トークンの取得に失敗しました";
 
   const properties = PropertiesService.getScriptProperties();
-  properties.setProperty("syncToken", nextSyncToken);
+  properties.setProperty(`syncToken-${getAccountTag(calendarId)}`, nextSyncToken);
 };
 
 /**
@@ -48,7 +48,7 @@ export const initializeItems = (calendarId: string) => {
   // 取得期間の生成
   const startDt = startOfMonth(new Date());
   const timeMin = formatRFC3339(startDt);
-  const endDt = add(startOfMonth(new Date()), { months: 6 });
+  const endDt = add(startOfMonth(new Date()), { months: 3 });
   const timeMax = formatRFC3339(endDt);
 
   // イベントの取得
